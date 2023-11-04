@@ -34,6 +34,7 @@ This is a FastAPI application that provides a simple To-Do list API using SQL Se
    ```shell
    pip install -r requirements.txt
    ```
+   
 
 ## Configuration
 
