@@ -1,70 +1,73 @@
-# FastAPI To-Do App
+Certainly! Here's a README file to help you run the Python application using Docker:
 
-This is a FastAPI application that provides a simple To-Do list API using SQL Server as the database backend. It allows you to create, read, update, and delete tasks.
+# Running the Python Application with Docker
+
+This guide will walk you through the process of building a Docker image and running a Python application using FastAPI, which interacts with a Microsoft SQL Server database using PyODBC. The application is containerized for easy deployment and scaling.
 
 ## Prerequisites
 
-- Ubuntu Server (or a similar Linux distribution)
-- Python 3.x
-- pip (Python package manager)
-- ODBC Driver 18 for SQL Server
+Before getting started, make sure you have the following prerequisites installed on your system:
 
-## Installation
+- [Docker](https://docs.docker.com/get-docker/)
+- Docker Compose (usually included with Docker Desktop on Windows and Docker for Mac)
 
-1. Install Python and pip if not already installed:
+## Step 1: Clone the Repository
 
-   ```shell
-   sudo apt update
-   sudo apt install python3 python3-pip
-   ```
+Clone the application's source code from your version control system or download it as a zip archive and extract it to your local machine.
 
-2. Install ODBC Driver 18 for SQL Server:
-
-   Follow the official documentation to install the ODBC Driver for SQL Server on your Ubuntu server: [ODBC Driver on Linux](https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server)
-
-3. Clone the repository:
-
-   ```shell
-   git clone <repository_url>
-   cd <repository_directory>
-   ```
-
-4. Install the required Python packages:
-
-   ```shell
-   pip install -r requirements.txt
-   ```
-   
-
-## Configuration
-
-Edit the `main.py` file and set your SQL Server connection string in the `connection_string` variable:
-
-```python
-connection_string = "Driver={ODBC Driver 18 for SQL Server};Server=tcp:devopsinsidersdbs.database.windows.net,1433;Database=todoapp;UID=devopsadmin;PWD=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
+```bash
+git clone <repository_url>
+cd <repository_directory>
 ```
 
-Make sure to replace the connection string with your SQL Server details.
+## Step 2: Update Connection String
 
-## Usage
+Edit the `app.py` file to update the `connection_string` variable with the appropriate connection details for your SQL Server database.
 
-Run the FastAPI application:
+## Step 3: Build the Docker Image
 
-   ```shell
-   uvicorn app:app --host 0.0.0.0 --port 8000
-   ```
+To build the Docker image, open a terminal, navigate to the project directory, and run the following command:
 
-The API will be available at `http://your_server_ip:8000`.
+```bash
+docker build -t my-python-app .
+```
+
+Replace `my-python-app` with a suitable name for your Docker image.
+
+## Step 4: Run the Docker Container
+
+After successfully building the Docker image, you can run the application in a Docker container with the following command:
+
+```bash
+docker run -p 8000:8000 my-python-app
+```
+
+Replace `my-python-app` with the name you provided in step 3.
+
+The `-p 8000:8000` option maps port 8000 on your host machine to the container's port 8000. You can change the host port if needed.
+
+## Step 5: Access the Application
+
+Your Python application is now running in a Docker container. You can access it by opening a web browser or sending HTTP requests to `http://localhost:8000`.
 
 ## API Endpoints
 
-- `GET /tasks`: List all tasks.
-- `GET /tasks/{task_id}`: Retrieve a single task by ID.
-- `POST /tasks`: Create a new task.
-- `PUT /tasks/{task_id}`: Update an existing task by ID.
-- `DELETE /tasks/{task_id}`: Delete a task by ID.
+- `/tasks`: List all tasks (GET)
+- `/tasks/{task_id}`: Retrieve a single task by ID (GET)
+- `/tasks`: Create a new task (POST)
+- `/tasks/{task_id}`: Update an existing task by ID (PUT)
+- `/tasks/{task_id}`: Delete a task by ID (DELETE)
 
-## CORS Configuration
+## Cleaning Up
 
-By default, the application is configured to allow all origins. In a production environment, you should specify the allowed origins explicitly in the CORS middleware configuration in the `main.py` file.
+To stop and remove the Docker container, press `Ctrl + C` in the terminal where the container is running. Then, remove the container with:
 
+```bash
+docker rm -f <container_id>
+```
+
+Replace `<container_id>` with the actual container ID, which you can obtain from `docker ps`.
+
+## Conclusion
+
+You've successfully built and run a Python application using Docker. Feel free to make changes to the application, rebuild the Docker image, and deploy it to your preferred environment.
