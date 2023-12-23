@@ -6,8 +6,7 @@ This guide will walk you through the process running a Python application using 
 
 Before getting started, make sure you have the following prerequisites installed on your system:
 
-- [Docker](https://docs.docker.com/get-docker/)
-- Docker Compose (usually included with Docker Desktop on Windows and Docker for Mac)
+- Python 
 
 ## Step 1: Clone the Repository
 
