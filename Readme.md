@@ -21,7 +21,7 @@ cd <repository_directory>
 
 Edit the `app.py` file to update the `connection_string` variable with the appropriate connection details for your SQL Server database.
 
-## Step 3: Build the Docker Image
+## Step 3: Run Below Commands to make the application running
 
 To Run the Application, open a terminal, navigate to the project directory, and run the following command:
 
