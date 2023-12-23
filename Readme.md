@@ -6,7 +6,8 @@ This guide will walk you through the process running a Python application using 
 
 Before getting started, make sure you have the following prerequisites installed on your system:
 
-- Python 
+- Python
+- pip
 
 ## Step 1: Clone the Repository
 
@@ -26,6 +27,7 @@ Edit the `app.py` file to update the `connection_string` variable with the appro
 To Run the Application, open a terminal, navigate to the project directory, and run the following command:
 
 ```bash
+pip install -r requirements.txt
 sudo su
 apt-get update && apt-get install -y unixodbc unixodbc-dev
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
