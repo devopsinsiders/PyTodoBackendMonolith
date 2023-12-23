@@ -1,6 +1,6 @@
 # Running the Python Application with Docker
 
-This guide will walk you through the process of building a Docker image and running a Python application using FastAPI, which interacts with a Microsoft SQL Server database using PyODBC. The application is containerized for easy deployment and scaling.
+This guide will walk you through the process running a Python application using FastAPI, which interacts with a Microsoft SQL Server database using PyODBC.
 
 ## Prerequisites
 
@@ -24,29 +24,21 @@ Edit the `app.py` file to update the `connection_string` variable with the appro
 
 ## Step 3: Build the Docker Image
 
-To build the Docker image, open a terminal, navigate to the project directory, and run the following command:
+To Run the Application, open a terminal, navigate to the project directory, and run the following command:
 
 ```bash
-docker build -t my-python-app .
+sudo su
+apt-get update && apt-get install -y unixodbc unixodbc-dev
+curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
+apt-get update
+ACCEPT_EULA=Y apt-get install -y msodbcsql17
+uvicorn app:app --host 0.0.0.0 --port 8000
 ```
 
-Replace `my-python-app` with a suitable name for your Docker image.
+## Step 4: Access the Application
 
-## Step 4: Run the Docker Container
-
-After successfully building the Docker image, you can run the application in a Docker container with the following command:
-
-```bash
-docker run -p 8000:8000 my-python-app
-```
-
-Replace `my-python-app` with the name you provided in step 3.
-
-The `-p 8000:8000` option maps port 8000 on your host machine to the container's port 8000. You can change the host port if needed.
-
-## Step 5: Access the Application
-
-Your Python application is now running in a Docker container. You can access it by opening a web browser or sending HTTP requests to `http://localhost:8000`.
+Your Python application is now running. You can access it by opening a web browser or sending HTTP requests to `http://localhost:8000` or by using VM's Public IP.
 
 ## API Endpoints
 
@@ -56,16 +48,6 @@ Your Python application is now running in a Docker container. You can access it 
 - `/tasks/{task_id}`: Update an existing task by ID (PUT)
 - `/tasks/{task_id}`: Delete a task by ID (DELETE)
 
-## Cleaning Up
-
-To stop and remove the Docker container, press `Ctrl + C` in the terminal where the container is running. Then, remove the container with:
-
-```bash
-docker rm -f <container_id>
-```
-
-Replace `<container_id>` with the actual container ID, which you can obtain from `docker ps`.
-
 ## Conclusion
 
-You've successfully built and run a Python application using Docker. Feel free to make changes to the application, rebuild the Docker image, and deploy it to your preferred environment.
+You've successfully run a Python application. Feel free to make changes to the application and deploy it to your preferred environment.
