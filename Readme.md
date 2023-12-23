@@ -1,11 +1,16 @@
-# Running the Python Application with Docker
+# Running the Python Application on Azure VM
 
 This guide will walk you through the process running a Python application using FastAPI, which interacts with a Microsoft SQL Server database using PyODBC.
 
 ## Prerequisites
 
 Before getting started, make sure you have the following prerequisites installed on your system:
-
+-  source_image_reference = {
+      publisher = "Canonical"
+      offer     = "0001-com-ubuntu-server-focal"
+      sku       = "20_04-lts"
+      version   = "latest"
+    }
 - Python
 - pip
 
