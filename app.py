@@ -23,7 +23,7 @@ class Task(BaseModel):
     description: str
 
 # Create a table for tasks (You can run this once outside of the app)
-@app.get("/")
+@app.get("/api")
 def create_tasks_table():
     try:
         conn = pyodbc.connect(connection_string)
@@ -41,7 +41,7 @@ def create_tasks_table():
     return "Table Created... Tasks API Ready"
 
 # List all tasks
-@app.get("/tasks")
+@app.get("/api/tasks")
 def get_tasks():
     tasks = []
     with pyodbc.connect(connection_string) as conn:
@@ -57,7 +57,7 @@ def get_tasks():
     return tasks
 
 # Retrieve a single task by ID
-@app.get("/tasks/{task_id}")
+@app.get("/api/tasks/{task_id}")
 def get_task(task_id: int):
     with pyodbc.connect(connection_string) as conn:
         cursor = conn.cursor()
@@ -73,7 +73,7 @@ def get_task(task_id: int):
         return {"message": "Task not found"}
 
 # Create a new task
-@app.post("/tasks")
+@app.post("/api/tasks")
 def create_task(task: Task):
     with pyodbc.connect(connection_string) as conn:
         cursor = conn.cursor()
@@ -91,7 +91,7 @@ def update_task(task_id: int, updated_task: Task):
         return {"message": "Task updated"}
 
 # Delete a task by ID
-@app.delete("/tasks/{task_id}")
+@app.delete("/api/tasks/{task_id}")
 def delete_task(task_id: int):
     with pyodbc.connect(connection_string) as conn:
         cursor = conn.cursor()
