@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 # Load environment variables from .env file
 load_dotenv()
 
-Hello
 connection_string = os.getenv("CONNECTION_STRING")
 
 app = FastAPI()
