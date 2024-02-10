@@ -3,3 +3,4 @@ fastapi
 uvicorn[standard]
 pydantic
 azure-identity
+python-dotenv

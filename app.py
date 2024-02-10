@@ -1,9 +1,15 @@
 import pyodbc
+import uvicorn
+import os
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
-connection_string="Driver={ODBC Driver 17 for SQL Server};Server=tcp:devopsinsidersdbs.database.windows.net,1433;Database=todoapp;UID=devopsadmin;PWD=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30"
+# Load environment variables from .env file
+load_dotenv()
+
+connection_string = os.getenv("CONNECTION_STRING")
 
 app = FastAPI()
 
@@ -15,7 +21,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 # Define the Task model
 class Task(BaseModel):
@@ -101,3 +106,4 @@ def delete_task(task_id: int):
 
 if __name__ == "__main__":
     create_tasks_table()
+    uvicorn.run(app, host="0.0.0.0", port=8000)
