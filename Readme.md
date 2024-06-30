@@ -49,11 +49,11 @@ Your Python application is now running. You can access it by opening a web brows
 
 ## API Endpoints
 
-- `/tasks`: List all tasks (GET)
-- `/tasks/{task_id}`: Retrieve a single task by ID (GET)
-- `/tasks`: Create a new task (POST)
-- `/tasks/{task_id}`: Update an existing task by ID (PUT)
-- `/tasks/{task_id}`: Delete a task by ID (DELETE)
+- `/api/tasks`: List all tasks (GET)
+- `/api/tasks/{task_id}`: Retrieve a single task by ID (GET)
+- `/api/tasks`: Create a new task (POST)
+- `/api/tasks/{task_id}`: Update an existing task by ID (PUT)
+- `/api/tasks/{task_id}`: Delete a task by ID (DELETE)
 
 ## Conclusion
 
