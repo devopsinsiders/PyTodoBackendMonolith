@@ -25,7 +25,7 @@ cd <repository_directory>
 
 ## Step 2: Update Connection String
 
-Edit the `app.py` file to update the `connection_string` variable with the appropriate connection details for your SQL Server database. Update ODBC Version to 17
+Edit the `app.py` file to update the `connection_string` variable with the appropriate connection details for your SQL Server database.
 
 ## Step 3: Run Below Commands to make the application running
 
