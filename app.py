@@ -29,10 +29,10 @@ class Task(BaseModel):
     description: str
 
 # Create a table for tasks (You can run this once outside of the app)
-@app.get("/api")
+@app.on_event("startup")
 def create_tasks_table():
     try:
-        conn = pyodbc.connect(connection_string)
+        conn = pyodbc.connect(connection_string, autocommit=True)
         cursor = conn.cursor()
         cursor.execute("""
             CREATE TABLE Tasks (
@@ -40,8 +40,7 @@ def create_tasks_table():
                 Title varchar(255),
                 Description text
             );
-        """)
-        conn.commit()        
+        """)      
     except Exception as e:
         print(e)
     return "Table Created... Tasks API Ready"
