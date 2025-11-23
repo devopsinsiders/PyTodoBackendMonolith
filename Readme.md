@@ -56,6 +56,7 @@ Your Python application is now running. You can access it by opening a web brows
 - `/api/tasks`: List all tasks (GET)
 - `/api/tasks/{task_id}`: Retrieve a single task by ID (GET)
 - `/api/tasks`: Create a new task (POST)
+   Request Body - { title: '', description: '' }
 - `/api/tasks/{task_id}`: Update an existing task by ID (PUT)
 - `/api/tasks/{task_id}`: Delete a task by ID (DELETE)
 
