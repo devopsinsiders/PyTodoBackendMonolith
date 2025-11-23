@@ -52,7 +52,7 @@ uvicorn app:app --host 0.0.0.0 --port 8000
 Your Python application is now running. You can access it by opening a web browser or sending HTTP requests to `http://localhost:8000` or by using VM's Public IP.
 
 ## API Endpoints
-
+- `/api/`: To Create required Tables (GET)
 - `/api/tasks`: List all tasks (GET)
 - `/api/tasks/{task_id}`: Retrieve a single task by ID (GET)
 - `/api/tasks`: Create a new task (POST)
